@@ -1,5 +1,4 @@
-# Prerequisites
-*.d
+# Unreal Engine Specific
 
 # Compiled Object files
 *.slo
@@ -16,10 +15,6 @@
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
 # Compiled Static libraries
 *.lai
 *.la
@@ -30,3 +25,42 @@
 *.exe
 *.out
 *.app
+
+# Log files
+*.log
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Unreal Engine Derived files
+/.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folders (unnecessary to track built products)
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+
+# Configuration files for user-specific settings (never shared)
+*.ini
+*.uproject*
+.idea/
+
+# Miscellaneous files (editor config, backup files, etc.)
+*.tmp
+*.bak
+*.swp
+.idea/
+*.origin
+
+# Optional: Unused Engine or Plugin files
+Engine/Intermediate/
+Plugins/Intermediate/
+
+# Build-related files
+/Dotenv
