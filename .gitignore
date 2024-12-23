@@ -77,3 +77,17 @@ v17/
 *.v17*
 .vs/MyGame/v17/Browse.VC.db
 .vs/MyGame/v17/Browse.VC.db
+
+# Visual Studio
+.vs/
+
+# Binaries
+Binaries/
+
+# Unreal Engine Intermediate and Derived Data Cache
+Intermediate/
+DerivedDataCache/
+
+# Build outputs and logs
+Saved/
+
