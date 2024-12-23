@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\Sloan\\projects\\Unreal Engine\\MyGame\\Source\\MyGame\\MyGame.Build.cs",
+		"C:\\Users\\Sloan\\projects\\Unreal Engine\\MyGame\\Source\\MyGame.Target.cs",
+		"C:\\Users\\Sloan\\projects\\Unreal Engine\\MyGame\\Source\\MyGameEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}

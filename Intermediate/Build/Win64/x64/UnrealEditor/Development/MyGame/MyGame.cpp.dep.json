@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\sloan\\projects\\unreal engine\\mygame\\source\\mygame\\mygame.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\sloan\\projects\\unreal engine\\mygame\\intermediate\\build\\win64\\x64\\mygameeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\sloan\\projects\\unreal engine\\mygame\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\mygame\\definitions.mygame.h",
+            "c:\\users\\sloan\\projects\\unreal engine\\mygame\\source\\mygame\\mygame.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -1,0 +1,15 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-MyGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\MyGameEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\MyGame.init.gen.cpp.obj"
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\PlayerCharacter.gen.cpp.obj"
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\MyGame.cpp.obj"
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\PlayerCharacter.cpp.obj"
+"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\Default.rc2.res"
+/OUT:"C:\Users\Sloan\projects\Unreal Engine\MyGame\Intermediate\Build\Win64\x64\UnrealEditor\Development\MyGame\UnrealEditor-MyGame.lib"
