@@ -77,7 +77,7 @@ void APlayerCharacter::MoveRight(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
-
+//checking something
 }
 
 void APlayerCharacter::MoveLeft(float InputValue) {
