@@ -90,4 +90,23 @@ DerivedDataCache/
 
 # Build outputs and logs
 Saved/
+# Visual Studio files
+.vs/
+
+# Unreal Engine Binary files
+Binaries/
+
+# Unreal Engine Intermediate files
+Intermediate/
+
+# Unreal Engine saved files
+Saved/
+
+# PDB files
+*.pdb
+
+# Solution files (in .vs)
+*.VC.db
+*.opendb
+*.ipch
 
