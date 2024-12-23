@@ -14,6 +14,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MYGAME_PlayerCharacter_generated_h
 
+#define FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execLineTrace);
+
+
 #define FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAPlayerCharacter(); \
@@ -39,6 +43,7 @@ public: \
 #define FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_INCLASS_NO_PURE_DECLS \
 	FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_ENHANCED_CONSTRUCTORS \
 private: \

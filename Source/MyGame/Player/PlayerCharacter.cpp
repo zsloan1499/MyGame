@@ -3,6 +3,7 @@
 
 #include "PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 
 // Sets default values
@@ -18,6 +19,10 @@ APlayerCharacter::APlayerCharacter()
 
 	//if we wanted first person
 	//Camera->bUsePawnControlRotation = true;
+
+	SwordMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword Mesh"));
+	SwordMesh->SetupAttachment(GetMesh(), FName("SwordSocket"));
+
 }
 
 // Called when the game starts or when spawned
@@ -42,17 +47,20 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	//If we ever want to jump
 	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 
-	//
+	//Move forward
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 
-	//
+	//move backward
 	PlayerInputComponent->BindAxis("MoveBackward", this, &APlayerCharacter::MoveBackward);
 
-	//
+	//move right
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
 
-	//
+	//move left
 	PlayerInputComponent->BindAxis("MoveLeft", this, &APlayerCharacter::MoveLeft);
+	
+	//Attack
+	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &APlayerCharacter::StartAttack);
 
 
 
@@ -84,6 +92,55 @@ void APlayerCharacter::MoveLeft(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
+
+}
+
+void APlayerCharacter::StartAttack() {
+
+	//call attack animation
+	if (AttackAnimation && bisAttacking == false) {
+
+		GetMesh()->PlayAnimation(AttackAnimation, false);
+		bisAttacking = true;
+	}
+
+}
+
+void APlayerCharacter::LineTrace() {
+
+
+	//Get Socket locations of the Sword, Start and end
+	FVector StartLocation = SwordMesh->GetSocketLocation(FName("Start"));
+	FVector EndLocation = SwordMesh->GetSocketLocation(FName("End"));
+
+
+	//Setup Line Trace
+	//object we hit with sword
+	FHitResult HitResult;
+
+	FCollisionQueryParams TraceParams;
+
+	//dont hit ourselves
+	TraceParams.AddIgnoredActor(this);
+
+	//Linetrace
+	GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, TraceParams);
+
+	//draw debig lines
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Blue, false, 1, 0, 1);
+
+	if (HitResult.bBlockingHit) {
+
+		AActor* ActorHit = HitResult.GetActor();
+		ActorHit->Destroy();
+
+	}
+
+
+
+	//Line trace
+
+
 
 }
 

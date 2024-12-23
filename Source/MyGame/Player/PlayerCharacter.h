@@ -33,8 +33,28 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;
 
+	UPROPERTY(EditAnywhere)
+	class UStaticMeshComponent* SwordMesh;
+
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimation;
+
 	void MoveForward(float InputValue);
 	void MoveBackward(float InputValue);
 	void MoveRight(float InputValue);
 	void MoveLeft(float InputValue);
+
+	//attack
+	int Damage;
+
+	void StartAttack();
+
+
+public:
+
+	UFUNCTION(BlueprintCallable)
+	void LineTrace();
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bisAttacking;
 };
