@@ -64,3 +64,14 @@ Plugins/Intermediate/
 
 # Build-related files
 /Dotenv
+
+# Visual Studio folders
+.vs/
+.vscode/
+.idea/
+
+# Specific IDE files
+vc17/
+v17/
+*.vcxproj*
+*.v17*
