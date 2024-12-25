@@ -33,11 +33,46 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;
 
+	//set up the walking animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* WalkAnimation;
+
+	//set up the sword mesh
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* SwordMesh;
 
+	//set up the shield mesh
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimation;
+	class UStaticMeshComponent* ShieldMesh;
+
+	//Basic Attack animation, common attack
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* BasicAttackAnimation;
+
+	//Ability 1 animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimationOption1;
+
+	//Ability 2 animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimationOption2;
+
+	//Ability 3 Animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimationOption3;
+
+	//Ability 4 Animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimationOption4;
+
+	//Ability 5 Animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* AttackAnimationOption5;
+
+	//Block animation
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* BlockAnimation;
+
 
 	void MoveForward(float InputValue);
 	void MoveBackward(float InputValue);
@@ -49,6 +84,8 @@ protected:
 
 	void StartAttack();
 
+	void Block();
+
 
 public:
 
@@ -57,4 +94,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bisAttacking;
+
+	UPROPERTY(BlueprinrReadWrite)
+	bool bisBlocking;
 };

@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeMyGame_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x22DEA45F,
+				0x4F56ECEF,
 				0x42C22087,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -25,5 +25,5 @@ void EmptyLinkFunctionForGeneratedCodeMyGame_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_MyGame.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_MyGame(Z_Construct_UPackage__Script_MyGame, TEXT("/Script/MyGame"), Z_Registration_Info_UPackage__Script_MyGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x22DEA45F, 0x42C22087));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_MyGame(Z_Construct_UPackage__Script_MyGame, TEXT("/Script/MyGame"), Z_Registration_Info_UPackage__Script_MyGame, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x4F56ECEF, 0x42C22087));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

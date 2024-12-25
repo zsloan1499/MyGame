@@ -71,6 +71,7 @@ void APlayerCharacter::MoveForward(float InputValue) {
 
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
+	GetMesh()->PlayAnimation(WalkAnimation, true);
 
 }
 
@@ -78,6 +79,7 @@ void APlayerCharacter::MoveBackward(float InputValue) {
 
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
+	GetMesh()->PlayAnimation(WalkAnimation, true);
 
 }
 
@@ -85,6 +87,7 @@ void APlayerCharacter::MoveRight(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
+	GetMesh()->PlayAnimation(WalkAnimation, true);
 //checking something
 }
 
@@ -92,20 +95,29 @@ void APlayerCharacter::MoveLeft(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
+	GetMesh()->PlayAnimation(WalkAnimation , true);
+
+}
+
+void APlayerCharacter::Block() {
+	
+	bisBlocking = true;
+	GetMesh()->PlayAnimation(BlockAnimation, false);
 
 }
 
 void APlayerCharacter::StartAttack() {
 
 	//call attack animation
-	if (AttackAnimation && bisAttacking == false) {
+	if (BasicAttackAnimation && bisAttacking == false) {
 
-		GetMesh()->PlayAnimation(AttackAnimation, false);
+		GetMesh()->PlayAnimation(BasicAttackAnimation, false);
 		bisAttacking = true;
 	}
 
 }
 
+// for weapon during an attack
 void APlayerCharacter::LineTrace() {
 
 
