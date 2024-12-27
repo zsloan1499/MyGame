@@ -20,8 +20,14 @@ APlayerCharacter::APlayerCharacter()
 	//if we wanted first person
 	//Camera->bUsePawnControlRotation = true;
 
+
+	//Setting up the Sword Mesh
 	SwordMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword Mesh"));
 	SwordMesh->SetupAttachment(GetMesh(), FName("SwordSocket"));
+
+	//Setting up the shield mesh
+	ShieldMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Shield Mesh"));
+	ShieldMesh->SetupAttachment(GetMesh(), FName("ShieldSocket"));
 
 }
 

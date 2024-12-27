@@ -95,6 +95,6 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	bool bisAttacking;
 
-	UPROPERTY(BlueprinrReadWrite)
+	UPROPERTY(BlueprintReadWrite)
 	bool bisBlocking;
 };
