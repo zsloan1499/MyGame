@@ -6,10 +6,12 @@
 #include "Components/StaticMeshComponent.h"
 
 
+
+
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	//Makes the camera coponent names it
@@ -19,23 +21,16 @@ APlayerCharacter::APlayerCharacter()
 
 	//if we wanted first person
 	//Camera->bUsePawnControlRotation = true;
-
-
-	//Setting up the Sword Mesh
+	
 	SwordMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword Mesh"));
-	SwordMesh->SetupAttachment(GetMesh(), FName("SwordSocket"));
-
-	//Setting up the shield mesh
-	ShieldMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Shield Mesh"));
-	ShieldMesh->SetupAttachment(GetMesh(), FName("ShieldSocket"));
-
+	SwordMesh->SetupAttachment(GetMesh(),FName("SwordSocket"));
 }
 
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
@@ -53,22 +48,30 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	//If we ever want to jump
 	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 
-	//Move forward
+	//w
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerCharacter::MoveForward);
 
-	//move backward
+	//s
 	PlayerInputComponent->BindAxis("MoveBackward", this, &APlayerCharacter::MoveBackward);
 
-	//move right
+	//d
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerCharacter::MoveRight);
 
-	//move left
+	//a
 	PlayerInputComponent->BindAxis("MoveLeft", this, &APlayerCharacter::MoveLeft);
-	
-	//Attack
+
+	//LMB
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &APlayerCharacter::StartAttack);
 
+	PlayerInputComponent->BindAction("AttackAbility1", IE_Pressed, this, &APlayerCharacter::StartAttackAbility1);
 
+	PlayerInputComponent->BindAction("AttackAbility2", IE_Pressed, this, &APlayerCharacter::StartAttackAbility2);
+
+	PlayerInputComponent->BindAction("AttackAbility3", IE_Pressed, this, &APlayerCharacter::StartAttackAbility3);
+
+	PlayerInputComponent->BindAction("AttackAbility4", IE_Pressed, this, &APlayerCharacter::StartAttackAbility4);
+
+	PlayerInputComponent->BindAction("AttackAuraAbility", IE_Pressed, this, &APlayerCharacter::StartAttackAuraAbility);
 
 
 }
@@ -77,7 +80,6 @@ void APlayerCharacter::MoveForward(float InputValue) {
 
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
-	GetMesh()->PlayAnimation(WalkAnimation, true);
 
 }
 
@@ -85,7 +87,6 @@ void APlayerCharacter::MoveBackward(float InputValue) {
 
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
-	GetMesh()->PlayAnimation(WalkAnimation, true);
 
 }
 
@@ -93,70 +94,123 @@ void APlayerCharacter::MoveRight(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
-	GetMesh()->PlayAnimation(WalkAnimation, true);
-//checking something
+	//checking something
 }
 
 void APlayerCharacter::MoveLeft(float InputValue) {
 
 	FVector RigthDirection = GetActorRightVector();
 	AddMovementInput(RigthDirection, InputValue);
-	GetMesh()->PlayAnimation(WalkAnimation , true);
 
 }
 
-void APlayerCharacter::Block() {
-	
-	bisBlocking = true;
-	GetMesh()->PlayAnimation(BlockAnimation, false);
-
-}
-
+//basic attack
 void APlayerCharacter::StartAttack() {
 
-	//call attack animation
-	if (BasicAttackAnimation && bisAttacking == false) {
+	if (AttackAnimation && !bisAttacking) {
 
-		GetMesh()->PlayAnimation(BasicAttackAnimation, false);
+		GetMesh()->PlayAnimation(AttackAnimation, false);
 		bisAttacking = true;
+
 	}
+
+
+
 
 }
 
-// for weapon during an attack
+void APlayerCharacter::StartAttackAbility1() {
+
+	if (AttackAbility1Animation) {
+
+		GetMesh()->PlayAnimation(AttackAbility1Animation, false);
+		bisAttacking = true;
+
+	}
+
+
+
+
+}
+
+void APlayerCharacter::StartAttackAbility2() {
+
+	if (AttackAbility2Animation) {
+
+		GetMesh()->PlayAnimation(AttackAbility2Animation, false);
+		bisAttacking = true;
+
+	}
+
+
+
+
+}
+
+void APlayerCharacter::StartAttackAbility3() {
+
+	if (AttackAbility3Animation) {
+
+		GetMesh()->PlayAnimation(AttackAbility3Animation, false);
+		bisAttacking = true;
+
+	}
+
+
+
+
+}
+
+void APlayerCharacter::StartAttackAbility4() {
+
+	if (AttackAbility4Animation) {
+
+		GetMesh()->PlayAnimation(AttackAbility4Animation, false);
+		bisAttacking = true;
+
+	}
+
+
+
+
+}
+
+void APlayerCharacter::StartAttackAuraAbility() {
+
+	if (AttackAuraAbilityAnimation) {
+
+		GetMesh()->PlayAnimation(AttackAuraAbilityAnimation, false);
+		bisAttacking = true;
+
+	}
+
+
+
+
+}
+
 void APlayerCharacter::LineTrace() {
 
-
-	//Get Socket locations of the Sword, Start and end
+	//get socket location
 	FVector StartLocation = SwordMesh->GetSocketLocation(FName("Start"));
 	FVector EndLocation = SwordMesh->GetSocketLocation(FName("End"));
 
-
-	//Setup Line Trace
-	//object we hit with sword
+	//set up linetrace
 	FHitResult HitResult;
-
 	FCollisionQueryParams TraceParams;
-
-	//dont hit ourselves
 	TraceParams.AddIgnoredActor(this);
-
-	//Linetrace
+	
+	//linetrace
 	GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECC_Visibility, TraceParams);
 
-	//draw debig lines
-	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Blue, false, 1, 0, 1);
 
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Blue, false, 1, 0, 1);
 	if (HitResult.bBlockingHit) {
 
 		AActor* ActorHit = HitResult.GetActor();
 		ActorHit->Destroy();
 
 	}
-
-
-
-	//Line trace
 
 
 

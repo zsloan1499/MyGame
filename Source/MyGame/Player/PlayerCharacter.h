@@ -19,7 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -33,45 +33,30 @@ protected:
 	UPROPERTY(EditAnywhere)
 	class UCameraComponent* Camera;
 
-	//set up the walking animation
-	UPROPERTY(EditAnywhere)
-	class UAnimSequence* WalkAnimation;
-
-	//set up the sword mesh
 	UPROPERTY(EditAnywhere)
 	class UStaticMeshComponent* SwordMesh;
 
-	//set up the shield mesh
 	UPROPERTY(EditAnywhere)
-	class UStaticMeshComponent* ShieldMesh;
+	class UAnimSequence* AttackAnimation;
 
-	//Basic Attack animation, common attack
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* BasicAttackAnimation;
+	class UAnimSequence* AttackAbility1Animation;
 
-	//Ability 1 animation
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimationOption1;
+	class UAnimSequence* AttackAbility2Animation;
 
-	//Ability 2 animation
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimationOption2;
+	class UAnimSequence* AttackAbility3Animation;
 
-	//Ability 3 Animation
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimationOption3;
+	class UAnimSequence* AttackAbility4Animation;
 
-	//Ability 4 Animation
 	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimationOption4;
+	class UAnimSequence* AttackAuraAbilityAnimation;
 
-	//Ability 5 Animation
-	UPROPERTY(EditAnywhere)
-	class UAnimSequence* AttackAnimationOption5;
 
-	//Block animation
-	UPROPERTY(EditAnywhere)
-	class UAnimSequence* BlockAnimation;
+
+
 
 
 	void MoveForward(float InputValue);
@@ -79,22 +64,22 @@ protected:
 	void MoveRight(float InputValue);
 	void MoveLeft(float InputValue);
 
-	//attack
-	int Damage;
+	int Damage();
 
 	void StartAttack();
 
-	void Block();
+	void StartAttackAbility1();
+	void StartAttackAbility2();
+	void StartAttackAbility3();
+	void StartAttackAbility4();
+	void StartAttackAuraAbility();
 
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void LineTrace();
-
 	UPROPERTY(BlueprintReadWrite)
 	bool bisAttacking;
 
-	UPROPERTY(BlueprintReadWrite)
-	bool bisBlocking;
+	UFUNCTION(BlueprintCallable)
+	void LineTrace();
 };
