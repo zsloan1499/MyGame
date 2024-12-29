@@ -4,6 +4,10 @@
 #include "PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CapsuleComponent.h"
+
+
 
 
 
@@ -30,6 +34,9 @@ APlayerCharacter::APlayerCharacter()
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	GetMesh()->PlayAnimation(IdleAnimation, true);
+
+	
 
 }
 
@@ -37,6 +44,22 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	// Check if player is moving by checking velocity
+	if (GetVelocity().Size() > 0.0f && bisAttacking == false) {
+		if (!bisMoving && bisAttacking == false) {  // If the player has started moving
+			bisMoving = true;
+			// Play the walking animation
+			GetMesh()->PlayAnimation(WalkAnimation, true);
+		}
+	}
+	else if (bisMoving && bisAttacking == false) {
+		bisMoving = false;
+		// If the player stops moving, play idle animation
+		GetMesh()->PlayAnimation(IdleAnimation, true);
+	}
+
+
 
 }
 
@@ -77,11 +100,11 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 }
 
 void APlayerCharacter::MoveForward(float InputValue) {
-
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
 
 }
+
 
 void APlayerCharacter::MoveBackward(float InputValue) {
 
@@ -109,6 +132,7 @@ void APlayerCharacter::StartAttack() {
 
 	if (AttackAnimation && !bisAttacking) {
 
+		
 		GetMesh()->PlayAnimation(AttackAnimation, false);
 		bisAttacking = true;
 
@@ -212,6 +236,12 @@ void APlayerCharacter::LineTrace() {
 
 	}
 
+
+
+}
+
+void APlayerCharacter::HandleEndAttackNotify(){
+	bisAttacking = false;
 
 
 }

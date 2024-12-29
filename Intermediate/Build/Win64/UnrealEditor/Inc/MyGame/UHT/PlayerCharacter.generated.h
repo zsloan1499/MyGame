@@ -15,6 +15,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define MYGAME_PlayerCharacter_generated_h
 
 #define FID_Users_Sloan_projects_Unreal_Engine_MyGame_Source_MyGame_Player_PlayerCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execHandleEndAttackNotify); \
 	DECLARE_FUNCTION(execLineTrace);
 
 

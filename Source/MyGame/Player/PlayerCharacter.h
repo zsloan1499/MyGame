@@ -37,6 +37,12 @@ protected:
 	class UStaticMeshComponent* SwordMesh;
 
 	UPROPERTY(EditAnywhere)
+	class UAnimSequence* WalkAnimation;
+
+	UPROPERTY(EditAnywhere)
+	class UAnimSequence* IdleAnimation;
+
+	UPROPERTY(EditAnywhere)
 	class UAnimSequence* AttackAnimation;
 
 	UPROPERTY(EditAnywhere)
@@ -53,6 +59,11 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	class UAnimSequence* AttackAuraAbilityAnimation;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bisMoving;  // This tracks whether the player is moving
+
+
 
 
 
@@ -74,6 +85,8 @@ protected:
 	void StartAttackAbility4();
 	void StartAttackAuraAbility();
 
+	FVector StartPosition;
+
 
 public:
 
@@ -82,4 +95,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void LineTrace();
+
+	UFUNCTION(BlueprintCallable)
+	void HandleEndAttackNotify();
 };
