@@ -98,4 +98,5 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void HandleEndAttackNotify();
+
 };

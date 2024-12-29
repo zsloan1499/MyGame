@@ -28,13 +28,20 @@ APlayerCharacter::APlayerCharacter()
 	
 	SwordMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Sword Mesh"));
 	SwordMesh->SetupAttachment(GetMesh(),FName("SwordSocket"));
+
 }
 
 // Called when the game starts or when spawned
 void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	// Disable character's movement component rotation handling
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	bUseControllerRotationYaw = false; // Disable controller yaw control for custom rotations
+
+
 	GetMesh()->PlayAnimation(IdleAnimation, true);
+
 
 	
 
@@ -58,9 +65,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 		// If the player stops moving, play idle animation
 		GetMesh()->PlayAnimation(IdleAnimation, true);
 	}
-
-
-
 }
 
 // Called to bind functionality to input
@@ -100,32 +104,78 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 }
 
 void APlayerCharacter::MoveForward(float InputValue) {
+	// Move forward
 	FVector ForwardDirection = GetActorForwardVector();
 	AddMovementInput(ForwardDirection, InputValue);
 
+	// Update rotation to make the player face the movement direction
+	if (InputValue != 0.f) {
+		FRotator NewRotation = FRotator(0.f, GetActorRotation().Yaw , 0.f); // Retain current pitch and roll
+		SetActorRotation(NewRotation); // Update actor rotation (capsule)
+
+		// Sync mesh rotation with actor (capsule)
+		GetMesh()->SetWorldRotation(FRotator(0.f, NewRotation.Yaw - 90.f, 0.f)); // Make sure the mesh faces the same way
+	}
 }
 
-
 void APlayerCharacter::MoveBackward(float InputValue) {
-
+	// Move backward
 	FVector ForwardDirection = GetActorForwardVector();
-	AddMovementInput(ForwardDirection, InputValue);
+	AddMovementInput(ForwardDirection, InputValue);  // Forward movement calculation
 
+	// Update rotation to make the player face the movement direction
+	if (InputValue != 0.f) {
+		FRotator NewRotation = FRotator(0.f, GetActorRotation().Yaw, 0.f); // Retain current pitch and roll
+		SetActorRotation(NewRotation); // Update actor rotation (capsule)
+
+		// Sync mesh rotation with actor (capsule)
+		GetMesh()->SetWorldRotation(FRotator(0.f, NewRotation.Yaw - -90.f, 0.f)); // Make sure the mesh faces the same way
+	}
 }
 
 void APlayerCharacter::MoveRight(float InputValue) {
+	// Move right
+	FVector RightDirection = GetActorRightVector();
+	AddMovementInput(RightDirection, InputValue);
 
-	FVector RigthDirection = GetActorRightVector();
-	AddMovementInput(RigthDirection, InputValue);
-	//checking something
+	// Update rotation to make the player face the movement direction
+	if (InputValue != 0.f) {
+		FRotator NewRotation = FRotator(0.f, GetActorRotation().Yaw, 0.f); // Retain current pitch and roll
+		SetActorRotation(NewRotation); // Update actor rotation (capsule)
+
+		// Sync mesh rotation with actor (capsule)
+		GetMesh()->SetWorldRotation(FRotator(0.f, NewRotation.Yaw, 0.f)); // Make sure the mesh faces the same way
+	}
 }
 
 void APlayerCharacter::MoveLeft(float InputValue) {
+	// Move left
+	FVector RightDirection = GetActorRightVector();
+	AddMovementInput(RightDirection, InputValue); // Use right direction vector for left movement
 
-	FVector RigthDirection = GetActorRightVector();
-	AddMovementInput(RigthDirection, InputValue);
+	// Update rotation to make the player face the movement direction
+	if (InputValue != 0.f) {
+		FRotator NewRotation = FRotator(0.f, GetActorRotation().Yaw, 0.f); // Retain current pitch and roll
+		SetActorRotation(NewRotation); // Update actor rotation (capsule)
 
+		// Sync mesh rotation with actor (capsule)
+		GetMesh()->SetWorldRotation(FRotator(0.f, NewRotation.Yaw - 180.f, 0.f)); // Make sure the mesh faces the same way
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //basic attack
 void APlayerCharacter::StartAttack() {
