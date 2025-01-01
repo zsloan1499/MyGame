@@ -46,6 +46,9 @@ protected:
 	class UAnimSequence* AttackAnimation;
 
 	UPROPERTY(EditAnywhere)
+	class UAnimMontage* AttackAnimationMontage;
+
+	UPROPERTY(EditAnywhere)
 	class UAnimSequence* AttackAbility1Animation;
 
 	UPROPERTY(EditAnywhere)
