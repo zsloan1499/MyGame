@@ -5,6 +5,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "MyGame//Components/HealthComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -225,7 +226,15 @@ void APlayerCharacter::LineTrace() {
 	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Blue, false, 1, 0, 1);
 	if (HitResult.bBlockingHit) {
 		AActor* ActorHit = HitResult.GetActor();
-		ActorHit->Destroy();
+		UHealthComponent* EnemyHit = ActorHit->FindComponentByClass<UHealthComponent>();
+
+		if (EnemyHit) 
+		{
+
+			EnemyHit->TakeDamage(Damage);
+
+		}
+
 	}
 }
 

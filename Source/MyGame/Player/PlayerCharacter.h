@@ -78,7 +78,8 @@ protected:
 	void MoveRight(float InputValue);
 	void MoveLeft(float InputValue);
 
-	int Damage();
+	UPROPERTY(EditAnywhere)
+	int Damage;
 
 	void StartAttack();
 

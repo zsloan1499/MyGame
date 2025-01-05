@@ -11,7 +11,11 @@
     <None Include="..\..\Source\MyGameEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\bfg-1.14.0.jar" />
+    <None Include="..\..\README.md" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -38,6 +42,15 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\MyGame\MyGame.h">
       <Filter>Source\MyGame</Filter>
+    </ClInclude>
+    <Filter Include="Source\MyGame\Components">
+      <UniqueIdentifier>{2C5E4E6D-326C-3901-A144-9FB81F0D4FD4}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\MyGame\Components\HealthComponent.cpp">
+      <Filter>Source\MyGame\Components</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\MyGame\Components\HealthComponent.h">
+      <Filter>Source\MyGame\Components</Filter>
     </ClInclude>
     <Filter Include="Source\MyGame\Player">
       <UniqueIdentifier>{D9658831-1C13-37AF-9F37-C3C559B2BA11}</UniqueIdentifier>
